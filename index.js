@@ -6,8 +6,12 @@ import puppeteerExtra  from "puppeteer-extra"
 import pluginStealth   from "puppeteer-extra-plugin-stealth"
 import https from "https"
 import dotenv from "dotenv"
+import locateChrome from "locate-chrome"
+
 
 dotenv.config();
+const executablePath = await new Promise(resolve => locateChrome(arg => resolve(arg)));
+
 
 const PORT = process.env.PORT || 5000
 const app = express()
@@ -160,7 +164,8 @@ app.get('/', async (req, res) => {
             puppeteerExtra.use(pluginStealth());
             const browser = await puppeteerExtra.launch({
                 headless: false, 
-                executablePath: puppeteer.executablePath(),
+                // executablePath: puppeteer.executablePath(),
+                executablePath,
                 args:[
                     '--window-size=1200,800',
                 ]
@@ -237,7 +242,8 @@ app.get('/', async (req, res) => {
         puppeteerExtra.use(pluginStealth());
         const browser = await puppeteerExtra.launch({
             headless: false, 
-            executablePath: puppeteer.executablePath(),
+            // executablePath: puppeteer.executablePath(),
+            executablePath,
         });
         const page = await browser.newPage();
         await page.goto(zpid_url);
