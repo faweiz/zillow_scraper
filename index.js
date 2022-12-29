@@ -158,13 +158,16 @@ app.get('/', async (req, res) => {
 
             // Puppeteer
             puppeteerExtra.use(pluginStealth());
-            const browser = await puppeteerExtra.launch({
-                headless: false, 
+           // const browser = await puppeteerExtra.launch({
+            const browser = await puppeteer.launch({
+               headless: false, 
                 // executablePath: puppeteer.executablePath(),
-                executablePath : "/usr/bin/chromium-browser",
-                args:[
-                    '--window-size=1200,800',
-                ]
+               // executablePath : "/usr/bin/chromium-browser",
+                ignoreDefaultArgs: ['--disable-extensions'],
+                // args:[
+                //     '--window-size=1200,800',
+                // ]
+                args: ['--no-sandbox'], // This was important. Can't remember why
             });
             const page = await browser.newPage();
             var url = `${baseUrl}/${address_parm}`;
