@@ -239,11 +239,14 @@ app.get('/', async (req, res) => {
     (async() =>{
     // Puppeteer
         puppeteerExtra.use(pluginStealth());
-        const browser = await puppeteerExtra.launch({
+        //const browser = await puppeteerExtra.launch({
+        const browser = await puppeteer.launch({
             headless: false, 
             // executablePath: puppeteer.executablePath(),
-            executablePath : "/usr/bin/chromium-browser",
+            // executablePath : "/usr/bin/chromium-browser",
+            args: ['--no-sandbox'], // This was important. Can't remember why
         });
+
         const page = await browser.newPage();
         await page.goto(zpid_url);
 
