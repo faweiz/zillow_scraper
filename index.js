@@ -5,6 +5,9 @@ import puppeteer  from "puppeteer"
 import puppeteerExtra  from "puppeteer-extra"
 import pluginStealth   from "puppeteer-extra-plugin-stealth"
 import https from "https"
+import dotenv from "dotenv"
+
+dotenv.config();
 
 const PORT = process.env.PORT || 5000
 const app = express()
@@ -35,7 +38,6 @@ app.get('/', async (req, res) => {
     let script = [], property_id = [], property_id_split = [], property_zpid = [], price  = [], status = [], web_url = [], beds = [], baths = [], address = [], addressStreet = [], addressCity = [], addressState = [], addressZipcode = [], 
         living_area = [], living_area_unit = 'sqft', prop_type = [], latitude = [], longitude = [], thumbnail = [];
     var sdata = "", west = "", east = "", south = "", north = "";
-    const APIKey = "AIzaSyAePfxdWErt-qkBKosEqMKSze2Aa8t_v3Q";
 
     try {
         console.log(`Getting Zillow data`);
@@ -47,7 +49,7 @@ app.get('/', async (req, res) => {
                     const options = {
                         "hostname": "maps.googleapis.com",
                         "port": null,
-                        "path": `/maps/api/geocode/json?address=${address_value}&key=${APIKey}`,
+                        "path": `/maps/api/geocode/json?address=${address_value}&key=${process.env.GOOGLE_API_KEY}`,
                         method: 'GET'
                     };
                     const req = https.request(options, (res) => {
