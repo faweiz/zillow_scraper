@@ -2,14 +2,11 @@
 
 Scraper API for Zillow Real Estate Data from zillow.com: 
 
-1. Search Properties:
-	[https://www.zillow.com/homes/${address_parm}]
-	/properties/v2/list-for-sale/
+1. Search Properties: [https://www.zillow.com/homes/${address_parm}]
 	
 Example Link:
-```
 [https://zillow-scraper.onrender.com/properties/v2/list-for-sale?zipcode=21076&limit=10&sort=pricea&price_max=900000&beds_min=2&baths_min=2&sqft_min=1000&sqft_max=7500&lotSize_min=1000&yearbuilt_min=2000]
-```
+
 
 Example json:
 ```
@@ -87,14 +84,11 @@ Example json:
 ]
 ```
  
-2. Properties Detail:
-	[https://www.zillow.com/homedetails/${zpid}_zpid/]
-	/properties/v2/detail
+2. Properties Detail: [https://www.zillow.com/homedetails/${zpid}_zpid/]
 	
 Example Link:
-```
 [https://zillow-scraper.onrender.com/properties/v2/detail?property_id=2067028093]
-```
+
 
 
 Example json:
